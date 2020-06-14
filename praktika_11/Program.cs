@@ -8,21 +8,23 @@ namespace praktika_11
         {
             int size = 11, x=5, y=5;
             Random a = new Random();
-            string original = "", crypted = "", decrypted = "", manual;
-            string[,] matrix = new string[size, size];
-            string[,] decryptedmatrix = new string[size, size];
+            char[] bukvy = new char[26] {'A', 'B', 'C', 'D', 'E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+            string original = "", crypted = "", decrypted = "";
+            char manual;
+            char[,] matrix = new char[size, size];
+            char[,] decryptedmatrix = new char[size, size];
             char[] cryptedarr = new char[121];
 
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
-                    manual = (a.Next(0, 9)).ToString();
+                    manual = bukvy[a.Next(0, 25)];
                     matrix[i, j] = manual;
                     original += manual;
                 }
             }
-            crypted = matrix[x, y];
+            crypted += matrix[x, y];
             Console.WriteLine("Оригинальная строка:\n" + original);
             for (int i = 0, x1=2, y1=2; i < 5; i++, x1+=2, y1+=2)
             {
@@ -40,19 +42,19 @@ namespace praktika_11
             Console.WriteLine("Зашифрованная строка:\n" + crypted);
             x = 5;
             y = 5;
-            decryptedmatrix[x, y] = cryptedarr[0].ToString();
+            decryptedmatrix[x, y] = cryptedarr[0];
             for (int i = 0, z = 1, x1 = 2, y1 = 2; i < 5; i++, x1 += 2, y1 += 2)
             {
-                decryptedmatrix[x, --y] = cryptedarr[z].ToString();
+                decryptedmatrix[x, --y] = cryptedarr[z];
                 z++;
                 for (int j = 1; j < x1; j++, z++)
-                    decryptedmatrix[++x, y] = cryptedarr[z].ToString();
+                    decryptedmatrix[++x, y] = cryptedarr[z];
                 for (int j = 1; j <= y1; j++, z++)
-                    decryptedmatrix[x, ++y] = cryptedarr[z].ToString();
+                    decryptedmatrix[x, ++y] = cryptedarr[z];
                 for (int j = 1; j <= x1; j++, z++)
-                    decryptedmatrix[--x, y] = cryptedarr[z].ToString();
+                    decryptedmatrix[--x, y] = cryptedarr[z];
                 for (int j = 1; j <= y1; j++, z++)
-                    decryptedmatrix[x, --y] = cryptedarr[z].ToString();
+                    decryptedmatrix[x, --y] = cryptedarr[z];
             }
             for (int i = 0; i < size; i++)
                 for (int j = 0; j < size; j++)
